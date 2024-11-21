@@ -1,0 +1,46 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+
+  display: grid;
+  grid-template-columns: auto 100px;
+  grid-template-rows: auto;
+  grid-template-areas: "main sidebar";
+
+  &:nth-child(1) {
+    grid-area: main;
+  }
+
+  &:nth-child(2) {
+    grid-area: sidebar;
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
+
+.bingo-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+
+  & [data-state="off"] {
+    background-color: lightgray;
+  }
+  & [data-state="on"] {
+    background-color: lightgreen;
+  }
+
+
+  &.opponent {
+    margin-top: 3px;
+
+    & div {
+      aspect-ratio: 1;
+    }  
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "tc-bingo",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "lint": "eslint",
+    "start": "node main.js",
+    "start-dev": "nodemon --inspect=0.0.0.0:9229 main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "type": "module",
+  "devDependencies": {
+    "@eslint/js": "^9.15.0",
+    "eslint": "^9.15.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.3.3"
+  },
+  "prettier": {},
+  "dependencies": {
+    "fastify": "^5.1.0",
+    "globals": "^15.12.0",
+    "ws": "^8.18.0"
+  }
+}

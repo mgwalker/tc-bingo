@@ -1,0 +1,31 @@
+name: tc-bingo
+
+services:
+  static:
+    image: nginx:latest
+    networks:
+      - tc-bingo
+    environment:
+      BACKEND_URL: http://backend:8000
+    volumes:
+      - ./web:/usr/share/nginx/html
+      - ./nginx:/etc/nginx/templates
+    ports:
+      - 8080:80
+
+  backend:
+    build:
+      context: ./backend
+    command: npm run start-dev
+    networks:
+      - tc-bingo
+    environment:
+      PORT: 8000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - 9229:9229
+
+networks:
+  tc-bingo:
