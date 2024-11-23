@@ -31,7 +31,13 @@ export const initializeCard = (data) => {
     node.addEventListener("click", () => {
       toggle(node);
     });
-    node.innerText = cell;
+    const content = document.createElement("div");
+    content.innerText = cell;
+    node.append(content);
     card.append(node);
   }
+};
+
+export const youWin = () => {
+  alert("Bingo!");
 };

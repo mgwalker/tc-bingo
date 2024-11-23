@@ -1,5 +1,6 @@
 import broadcast from "./broadcast.js";
 import { add, get, getAllStates } from "../server/clients.js";
+import bingo from "../bingo.js";
 
 export default (socket, msg) => {
   const message = JSON.parse(msg);
@@ -64,6 +65,23 @@ export default (socket, msg) => {
           },
           { exclude: socket },
         );
+
+        if (bingo(client.state)) {
+          broadcast(
+            {
+              action: "winner",
+              data: { id: client.id, username: client.username },
+            },
+            { exclude: socket },
+          );
+
+          socket.send(
+            JSON.stringify({
+              action: "you-win",
+              data: {},
+            }),
+          );
+        }
       }
       break;
 

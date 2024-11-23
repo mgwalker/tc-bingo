@@ -1,7 +1,8 @@
-import { initializeCard } from "./bingo.js";
+import { initializeCard, youWin } from "./bingo.js";
 import {
   addOpponentState,
   initializeOpponents,
+  opponentWins,
   removeOpponent,
   updateOpponent,
 } from "./opponents.js";
@@ -21,7 +22,6 @@ class WS extends WebSocket {
 const handle = (message) => {
   switch (message.action) {
     case "set-grid":
-      console.log(message.data);
       initializeCard(message.data);
       break;
 
@@ -39,6 +39,14 @@ const handle = (message) => {
 
     case "leave":
       removeOpponent(message.data.id);
+      break;
+
+    case "you-win":
+      youWin();
+      break;
+
+    case "winner":
+      opponentWins(message.data);
       break;
 
     default:

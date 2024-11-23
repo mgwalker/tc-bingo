@@ -26,21 +26,45 @@
 .bingo-card {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  column-gap: 5px;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  row-gap: 5px;
+  padding: 1em;
 
-  & [data-state="off"] {
-    background-color: lightgray;
-  }
-  & [data-state="on"] {
-    background-color: lightgreen;
-  }
-
-
-  &.opponent {
-    margin-top: 3px;
-
+  & div {
+    display: flex;
     & div {
-      aspect-ratio: 1;
-    }  
+      width: 100%;
+      align-self: center;
+      justify-content: center;
+    }
   }
+}
+
+.sidebar {
+  & .grids {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    align-content: flex-start;
+
+    & .opponent {
+      display: flex;
+      flex-wrap: wrap;
+      width: 25px;
+      height: 25px;
+
+      & div {
+        width: 5px;
+        height: 5px;
+      }
+    }
+  }
+}
+
+[data-state="off"] {
+  background-color: lightgray;
+}
+[data-state="on"] {
+  background-color: lightgreen;
 }
