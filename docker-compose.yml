@@ -16,7 +16,7 @@ services:
   backend:
     build:
       context: ./backend
-      dockerfile: Dockerfile.dev
+      dockerfile: ./backend/Dockerfile.dev
     command: npm run start-dev
     networks:
       - tc-bingo
