@@ -1,6 +1,6 @@
 import broadcast from "./broadcast.js";
 import { add, get, getAllStates } from "../server/clients.js";
-import bingo from "../bingo.js";
+import bingo, { getBoard } from "../bingo.js";
 
 export default (socket, msg) => {
   const message = JSON.parse(msg);
@@ -10,13 +10,7 @@ export default (socket, msg) => {
       {
         const id = (Math.random() + 1).toString(36).slice(2);
 
-        const grid = [
-          [1, 2, 3, 4, 5],
-          [6, 7, 8, 9, 10],
-          [11, 12, 13, 14, 15],
-          [16, 17, 18, 19, 20],
-          [21, 22, 23, 24, 25],
-        ];
+        const grid = getBoard();
 
         const state = [
           [false, false, false, false, false],
