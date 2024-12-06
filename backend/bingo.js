@@ -42,6 +42,7 @@ const words = [
   "apologizing for using too many acronyms",
   "Alan makes a comment about going over time",
   "trying to share a single window but showing the whole desktop",
+  "PRs welcome",
 ];
 
 export const getBoard = () => {
