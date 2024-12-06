@@ -42,6 +42,20 @@ const words = [
   "apologizing for using too many acronyms",
   "Alan makes a comment about going over time",
   "trying to share a single window but showing the whole desktop",
+  "evolve",
+  "restructure",
+  "ship it",
+  "pivot",
+  "I'm rambling",
+  "incubator",
+  "accelerator",
+  "for context",
+  "at scale",
+  "PRA",
+  "Back to you Alan",
+  "reference an 18F guide",
+  "path analysis",
+  "shenanigans",
 ];
 
 export const getBoard = () => {
