@@ -1,4 +1,4 @@
-const words = [
+[
   "Year to date",
   "Bench",
   "BD",
@@ -11,7 +11,7 @@ const words = [
   "LT",
   "You're on mute.",
   "Kudos",
-  "FY23 strategic bets",
+  "strategic goals",
   "Color of Money",
   "ATO",
   "Interruption by an outside source (dog, doorbell, etc.)",
@@ -42,54 +42,26 @@ const words = [
   "apologizing for using too many acronyms",
   "Alan makes a comment about going over time",
   "trying to share a single window but showing the whole desktop",
-];
-
-export const getBoard = () => {
-  const shuffledWords = [...words];
-  let m = shuffledWords.length;
-
-  while (m > 0) {
-    // Get an index for an unshuffled element.
-    const i = Math.floor(Math.random() * m);
-    m -= 1;
-
-    // Swap the two elements
-    const t = shuffledWords[m];
-    shuffledWords[m] = shuffledWords[i];
-    shuffledWords[i] = t;
-  }
-
-  return [
-    shuffledWords.slice(0, 5),
-    shuffledWords.slice(5, 10),
-    shuffledWords.slice(10, 15),
-    shuffledWords.slice(15, 20),
-    shuffledWords.slice(20, 25),
-  ];
-};
-
-export default (state) => {
-  for (let i = 0; i < 5; i += 1) {
-    // Row-wise check
-    if (!state[i].some((v) => !v)) {
-      return true;
-    }
-
-    // Column-wise check
-    if (!state.map((row) => row[i]).some((v) => !v)) {
-      return true;
-    }
-  }
-
-  // tl-br diagonal
-  if (!state.map((_, j) => state[j][j]).some((v) => !v)) {
-    return true;
-  }
-
-  // tr-bl diagonal
-  if (!state.map((_, j) => state[4 - j][j]).some((v) => !v)) {
-    return true;
-  }
-
-  return false;
-};
+  "PRs/contributions welcome",
+  "evolve",
+  "restructure",
+  "ship it",
+  "pivot",
+  "I'm rambling",
+  "incubator",
+  "accelerator",
+  "for context",
+  "at scale",
+  "PRA",
+  "Back to you Alan",
+  "reference an 18F guide",
+  "path analysis",
+  "shenanigans",
+  "speaker tears up",
+  "speaker makes us cry",
+  "sustainability",
+  "scale",
+  "creating value",
+  "people having to un-bingo because of a technicality",
+  "presenter has a bingo tab in the background showing"
+]

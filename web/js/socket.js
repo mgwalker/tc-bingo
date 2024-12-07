@@ -1,4 +1,4 @@
-import { initializeCard, youWin } from "./bingo.js";
+import { initializeCard } from "./bingo.js";
 import {
   addOpponentState,
   initializeOpponents,
@@ -8,6 +8,8 @@ import {
 } from "./opponents.js";
 
 class WS extends WebSocket {
+  #id;
+
   constructor(...args) {
     super(...args);
 
@@ -17,11 +19,22 @@ class WS extends WebSocket {
   send(message) {
     super.send(JSON.stringify(message));
   }
+
+  get id() {
+    return this.#id;
+  }
+  set id(id) {
+    this.#id = id;
+  }
 }
 
-const handle = (message) => {
+const handle = (message, socket) => {
   switch (message.action) {
-    case "set-grid":
+    case "set-id":
+      socket.id = message.data;
+      break;
+
+    case "set-squares":
       initializeCard(message.data);
       break;
 
@@ -41,12 +54,8 @@ const handle = (message) => {
       removeOpponent(message.data.id);
       break;
 
-    case "you-win":
-      youWin();
-      break;
-
     case "winner":
-      opponentWins(message.data);
+      opponentWins(message.data, socket);
       break;
 
     default:
@@ -67,6 +76,7 @@ export default (name) => {
   });
 
   ws.addEventListener("message", (msg) => {
-    handle(JSON.parse(msg.data));
+    const message = JSON.parse(msg.data);
+    handle(message, ws);
   });
 };

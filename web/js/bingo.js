@@ -22,22 +22,25 @@ const toggle = (node) => {
   getSocket().send({ action: "update-state", data: state });
 };
 
-export const initializeCard = (data) => {
+export const initializeCard = ({ squares, state }) => {
   const card = document.querySelector(".my.bingo-card");
-  const grid = data.flat();
-  for (const cell of grid) {
+
+  for (let i = 0; i < squares.length; i += 1) {
+    const square = squares[i];
+    const on = state[i];
+
     const node = document.createElement("div");
-    node.dataset.state = "off";
-    node.addEventListener("click", () => {
-      toggle(node);
-    });
+    node.dataset.state = on ? "on" : "off";
+
+    if (i !== 12) {
+      node.addEventListener("click", () => {
+        toggle(node);
+      });
+    }
+
     const content = document.createElement("div");
-    content.innerText = cell;
+    content.innerText = square;
     node.append(content);
     card.append(node);
   }
-};
-
-export const youWin = () => {
-  alert("Bingo!");
 };
